@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react0-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: react0
+  template:
+    metadata:
+      labels:
+        component: react0
+    spec:
+      #serviceAccountName: build-robot
+      containers:
+        - name: react
+          image: registry449.azurecr.io/react-app:v1.0.0
+          #image: gauravjain449/react-app0:487
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: regcred
+          
